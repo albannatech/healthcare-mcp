@@ -7,6 +7,21 @@ and the app uses [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.2] — 2026-11-12
+
+### Fixed
+
+**`REQUIRES_CORE` lower bound corrected from `0.1.0` to `0.2.0`.**
+
+`v0.1.1` declared `>=0.1.0,<0.2.0`, which was wrong in both directions: core
+`v0.1.0` predates the extension seam — it has no `services/extensions.py`, so
+there is nothing for this manifest to be discovered by — and the running core
+is now `0.2.0`, which the old upper bound excluded. The gate did its job and
+reported the extension incompatible; the declaration was the defect.
+
+The range is now `>=0.2.0,<0.3.0`: the first core version that can load this
+extension, pinned to the minor because the core is pre-1.0.
+
 ## [0.1.1] — 2026-11-12
 
 ### Added

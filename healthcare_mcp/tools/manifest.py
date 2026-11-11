@@ -395,10 +395,17 @@ TIERS = {
 #: reported as incompatible and refused activation — a visible Settings row
 #: rather than a runtime surprise.
 #:
-#: The range is ``>=0.1.0,<0.2.0`` because the core is pre-1.0 and its
+#: The lower bound is ``0.2.0``, not ``0.1.0``, and the reason is load-bearing:
+#: core ``v0.1.0`` predates the extension seam entirely — it has no
+#: ``services/extensions.py``, so there is nothing for this manifest to be
+#: discovered by.  Declaring ``>=0.1.0`` would promise a compatibility that
+#: cannot exist, and the gate would wave through an install that fails at
+#: load time with an ImportError instead of a version row.
+#:
+#: The upper bound pins to the minor because the core is pre-1.0 and its
 #: contract is not yet frozen.  A pre-1.0 core may change any part of the
 #: contract in a minor release, so pinning to the minor is the honest
 #: declaration; widening it to ``<1.0.0`` would promise a stability the core
 #: has not earned.  When the core reaches 1.0.0 this becomes ``>=1.0.0,<2.0.0``
 #: and the widening is a real event, not a guess.
-REQUIRES_CORE = ">=0.1.0,<0.2.0"
+REQUIRES_CORE = ">=0.2.0,<0.3.0"
