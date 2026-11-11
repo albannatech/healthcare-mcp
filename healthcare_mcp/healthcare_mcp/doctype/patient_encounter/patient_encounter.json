@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "creation": "2026-11-11 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "patient",
+  "encounter_type",
+  "practitioner",
+  "status",
+  "encounter_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Patient",
+   "options": "Patient",
+   "reqd": 1
+  },
+  {
+   "default": "Admission",
+   "fieldname": "encounter_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Encounter Type",
+   "options": "Admission\nConsultation\nFollow-up\nEmergency"
+  },
+  {
+   "fieldname": "practitioner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Practitioner",
+   "options": "User"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Open\nCancelled\nClosed"
+  },
+  {
+   "default": "Now",
+   "fieldname": "encounter_date",
+   "fieldtype": "Datetime",
+   "label": "Encounter Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-11 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Healthcare MCP",
+ "name": "Patient Encounter",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Healthcare MCP User",
+   "share": 1,
+   "submit": 0,
+   "cancel": 1,
+   "amend": 0,
+   "write": 1
+  }
+ ],
+ "search_fields": "patient, practitioner",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "patient"
+}

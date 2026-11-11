@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "creation": "2026-11-11 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "default_encounter_type",
+  "default_practitioner",
+  "require_practitioner_on_admission"
+ ],
+ "fields": [
+  {
+   "default": "Admission",
+   "fieldname": "default_encounter_type",
+   "fieldtype": "Select",
+   "label": "Default Encounter Type",
+   "options": "Admission\nConsultation\nFollow-up\nEmergency"
+  },
+  {
+   "description": "Used when admit_patient is called without naming one.",
+   "fieldname": "default_practitioner",
+   "fieldtype": "Link",
+   "label": "Default Practitioner",
+   "options": "User"
+  },
+  {
+   "default": "1",
+   "description": "When set, admit_patient refuses rather than admitting a patient with nobody assigned.",
+   "fieldname": "require_practitioner_on_admission",
+   "fieldtype": "Check",
+   "label": "Require a Practitioner on Admission"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-11-11 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Healthcare MCP",
+ "name": "Healthcare MCP Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
