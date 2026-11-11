@@ -387,3 +387,18 @@ TIERS = {
     "unassign_practitioner": WRITE,
     "admit_patient": WRITE,
 }
+
+#: The core version range this extension is built against.
+#:
+#: Read by the core as ``REQUIRES_CORE`` and checked against *activation*, not
+#: installation: an extension whose range excludes the running core is
+#: reported as incompatible and refused activation — a visible Settings row
+#: rather than a runtime surprise.
+#:
+#: The range is ``>=0.1.0,<0.2.0`` because the core is pre-1.0 and its
+#: contract is not yet frozen.  A pre-1.0 core may change any part of the
+#: contract in a minor release, so pinning to the minor is the honest
+#: declaration; widening it to ``<1.0.0`` would promise a stability the core
+#: has not earned.  When the core reaches 1.0.0 this becomes ``>=1.0.0,<2.0.0``
+#: and the widening is a real event, not a guess.
+REQUIRES_CORE = ">=0.1.0,<0.2.0"

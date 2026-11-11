@@ -7,6 +7,21 @@ and the app uses [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-11-12
+
+### Added
+
+**The core version range this extension is built against.**
+
+- `tools/manifest.py` — `REQUIRES_CORE = ">=0.1.0,<0.2.0"`. The core reads it
+  and checks it against *activation*, not installation: an extension whose
+  range excludes the running core is reported as incompatible and refused
+  activation, which is a visible Settings row rather than a runtime surprise.
+- The range pins to the core's minor because the core is pre-1.0 and its
+  contract is not yet frozen. Widening it to `<1.0.0` would promise a
+  stability the core has not earned; when the core reaches 1.0.0 this becomes
+  `>=1.0.0,<2.0.0` and the widening is a real event.
+
 ## [0.1.0] — 2026-11-11
 
 ### Added
