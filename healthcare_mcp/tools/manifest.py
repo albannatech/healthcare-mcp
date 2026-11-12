@@ -336,10 +336,14 @@ ADMIT_PATIENT = ToolSpec(
                 tool="create_encounter",
                 # The encounter belongs to the patient step 0 just made, so
                 # it consumes that step's output rather than guessing a name.
+                # `into` names the argument the created patient's name lands
+                # in — a parameter create_encounter declares. Landing it
+                # under the field's own name would be an argument the step's
+                # own closed schema refuses.
                 from_step=0,
                 from_field="name",
+                into="patient",
                 arguments={
-                    "patient": "{patient_name}",
                     "encounter_type": "{encounter_type}",
                 },
             ),
@@ -347,6 +351,7 @@ ADMIT_PATIENT = ToolSpec(
                 tool="assign_practitioner",
                 from_step=1,
                 from_field="name",
+                into="encounter",
                 arguments={"practitioner": "{practitioner}"},
             ),
         ),

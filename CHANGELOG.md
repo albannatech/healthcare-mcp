@@ -7,6 +7,30 @@ and the app uses [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+**The flow's wiring lands in declared parameters (`FlowStep.into`).**
+
+The core added `FlowStep.into`: the argument the wired output is injected
+into. The previous shape put the earlier step's output under the field's own
+name, which a closed tool schema (`additionalProperties: False`) refuses —
+`create_encounter` would have failed with *invalid arguments* the first time
+the flow actually ran.
+
+The two wired steps now say where their input lands:
+
+- `create_encounter` receives the created patient's name in `patient` — so
+  the encounter belongs to the patient record that exists, not to the text
+  the caller typed;
+- `assign_practitioner` receives the created encounter's name in
+  `encounter`.
+
+`REQUIRES_CORE` stays `>=0.4.0,<0.5.0`: the `into` field defaults to empty,
+so this manifest would still load on 0.4.0 — it would merely wire the way
+that breaks at run time. The manifest's tests run it through the core's own
+validator, which now refuses a `from_step` without `into`, so the
+declaration is checked both ways.
+
 ## [0.1.4] — 2026-11-12
 
 ### Fixed
