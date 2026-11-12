@@ -29,8 +29,22 @@ app_description = "Healthcare tools, agent and prompts for the frappe-mcp core."
 app_email = "ahmedalbanna966@gmail.com"
 app_license = "mit"
 
-# This extension contributes tools to the core, so the core must be present.
-required_apps = ["albanna_ai_chat"]
+# --------------------------------------------------------------------------
+# No ``required_apps``, and the absence is deliberate.
+#
+# Frappe resolves ``required_apps`` through ``installer.parse_app_name``,
+# which for a bare name does a GitHub lookup under ``frappe/`` and
+# ``erpnext/`` only — and for an ``org/repo`` form returns the *repository*
+# name.  This portfolio names its repos ``[APP_NAME]-mcp`` (hyphenated) while
+# the Python package inside is ``[APP_NAME]_mcp`` (underscored), so neither
+# form resolves to the app name Frappe needs.  Declaring it produces
+# ``InvalidRemoteException`` at install time, which reads as a network fault
+# rather than a naming conflict.
+#
+# The dependency is real and it is checked — in ``install.after_install``,
+# which raises a sentence naming the app to install first.  An explicit check
+# gives a better error than a mechanism that cannot express the dependency.
+# --------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------
 # The extension seam.
