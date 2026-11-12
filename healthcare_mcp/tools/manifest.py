@@ -415,4 +415,4 @@ TIERS = {
 #: declaration; widening it to ``<1.0.0`` would promise a stability the core
 #: has not earned.  When the core reaches 1.0.0 this becomes ``>=1.0.0,<2.0.0``
 #: and the widening is a real event, not a guess.
-REQUIRES_CORE = ">=0.3.0,<0.4.0"
+REQUIRES_CORE = ">=0.4.0,<0.5.0"
