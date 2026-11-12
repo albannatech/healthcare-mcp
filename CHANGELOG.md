@@ -7,6 +7,18 @@ and the app uses [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.3] — 2026-11-12
+
+### Fixed
+
+**`REQUIRES_CORE` corrected from `>=0.2.0,<0.3.0` to `>=0.3.0,<0.4.0`.**
+
+Installed against a running `0.3.0` core for the first time, the gate reported
+this extension incompatible — correctly. The declaration was stale: the
+extension had been built and tested against `0.3.0` all along, and its tests
+import the real core and pass. A compatibility gate that only ever passes is a
+gate nobody has run.
+
 ## [0.1.2] — 2026-11-12
 
 ### Fixed

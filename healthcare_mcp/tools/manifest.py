@@ -395,12 +395,19 @@ TIERS = {
 #: reported as incompatible and refused activation — a visible Settings row
 #: rather than a runtime surprise.
 #:
-#: The lower bound is ``0.2.0``, not ``0.1.0``, and the reason is load-bearing:
-#: core ``v0.1.0`` predates the extension seam entirely — it has no
+#: The lower bound is ``0.3.0``, and the reason is load-bearing twice over.
+#: Core ``v0.1.0`` predates the extension seam entirely — it has no
 #: ``services/extensions.py``, so there is nothing for this manifest to be
-#: discovered by.  Declaring ``>=0.1.0`` would promise a compatibility that
-#: cannot exist, and the gate would wave through an install that fails at
-#: load time with an ImportError instead of a version row.
+#: discovered by.  Core ``v0.2.0`` has the seam but not the four primitives
+#: this extension's contract assumes.  Declaring a lower bound below 0.3.0
+#: would promise a compatibility that cannot exist, and the gate would wave
+#: through an install that fails at load time instead of a version row.
+#:
+#: This was ``>=0.2.0,<0.3.0`` until it was installed against a running
+#: ``0.3.0`` core, which reported it incompatible.  The gate was right and the
+#: declaration was stale: the extension had been built and tested against
+#: 0.3.0 all along.  A compatibility gate that only ever passes is a gate
+#: nobody has run.
 #:
 #: The upper bound pins to the minor because the core is pre-1.0 and its
 #: contract is not yet frozen.  A pre-1.0 core may change any part of the
@@ -408,4 +415,4 @@ TIERS = {
 #: declaration; widening it to ``<1.0.0`` would promise a stability the core
 #: has not earned.  When the core reaches 1.0.0 this becomes ``>=1.0.0,<2.0.0``
 #: and the widening is a real event, not a guess.
-REQUIRES_CORE = ">=0.2.0,<0.3.0"
+REQUIRES_CORE = ">=0.3.0,<0.4.0"

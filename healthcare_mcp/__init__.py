@@ -10,4 +10,4 @@ It is deliberately small. Nine tools, one flow, two doctypes. A reference
 that is not small is a reference nobody reads.
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
